@@ -66,7 +66,10 @@ export default async function RecipeDetailPage(props: RecipeDetailPageProps) {
 
   const likeCount = likesResult.count ?? 0
   const userLiked = !!userLikeResult.data
-  const comments = (commentsResult.data ?? []) as Comment[]
+  const comments = (commentsResult.data ?? []).map((c) => ({
+    ...c,
+    profiles: c.profiles?.[0] ?? null,
+  })) as Comment[]
 
   return (
     <div className="min-h-screen bg-black font-sans text-white">
