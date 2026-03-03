@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 
-interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {}
+type SkeletonProps = HTMLAttributes<HTMLDivElement>
 
 export function Skeleton({ className, ...props }: SkeletonProps) {
   const classes = ['animate-pulse rounded-md bg-zinc-800/80', className]
