@@ -82,24 +82,6 @@ export async function signup(
       return { error: error.message }
     }
 
-    const userId = data.user?.id
-    if (!userId) {
-      return { error: 'Signup succeeded but no user ID was returned.' }
-    }
-
-    const { error: profileError } = await supabase.from('profiles').upsert(
-      {
-        id: userId,
-        username,
-        full_name: fullName,
-      },
-      { onConflict: 'id' }
-    )
-
-    if (profileError) {
-      return { error: profileError.message }
-    }
-
     redirect('/')
   } catch (error) {
     if (isRedirectError(error)) throw error
